@@ -5,7 +5,6 @@ export const Home = () => {
     return(
         <main>
             <Header/>
-            <Search/>
             <List/>
         </main>
     );

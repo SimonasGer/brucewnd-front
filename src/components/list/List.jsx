@@ -20,7 +20,7 @@ export const List = () => {
                 setItems(res.data.data);
             } catch (err) {
                 console.error(err)
-                setError("Failed to fetch mercenaries.")
+                setError("Something went wrong.")
             } finally {
                 setLoading(false);
             }
@@ -29,9 +29,9 @@ export const List = () => {
     }, [apiUrl]);
     return(
         <>
-        <h2>All comics</h2>
+        <h2>All works</h2>
         {error && <p className="error">{error}</p>}
-        {loading && <p className="loading">Loading missions...</p>}
+        {loading && <p className="loading">Loading...</p>}
         <section className="items"> 
             {items.map((item) => (
                 <ListItem
