@@ -3,24 +3,18 @@ import axios from "axios";
 import { ListItem } from "../listItem/ListItem";
 import "./list.scss";
 export const List = () => {
+    const apiUrl = process.env.REACT_APP_API_URL;
     const [items, setItems] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
-    const apiUrl = process.env.REACT_APP_API_URL;
     useEffect(() => {
         const fetchItems = async () => {
             try {
-                const token = localStorage.getItem("token");
-                const res = await axios.get(`${apiUrl}/comics`,
-                    {
-                        headers: {
-                            Authorization: `Bearer ${token}`
-                        }
-                    })
-                setItems(res.data.data);
+                const res = await axios.get(`${apiUrl}/comics`);
+                setItems(res.data);
             } catch (err) {
-                console.error(err)
-                setError("Something went wrong.")
+                console.error(err);
+                setError("Something went wrong.");
             } finally {
                 setLoading(false);
             }
@@ -36,9 +30,8 @@ export const List = () => {
             {items.map((item) => (
                 <ListItem
                     key={item.id}
-                    id={item.id}
-                    title={item.title}
-                    image={item.image}
+                    name={item.name}
+                    image={item.coverImage}
                 />
             ))}
         </section>
