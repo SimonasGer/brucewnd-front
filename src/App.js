@@ -4,6 +4,8 @@ import { jwtDecode } from "jwt-decode";
 import { Home } from "./pages/home/Home";
 import { Login } from "./pages/auth/Login";
 import { Register } from "./pages/auth/Register";
+import { User } from "./pages/user/User";
+import { Dashboard } from "./pages/dashboard/Dashboard";
 
 const isTokenValid = (token) => {
     try {
@@ -20,13 +22,17 @@ const isTokenValid = (token) => {
     }
 }
 
-
-export const ProtectedRoute = ({ children }) => {
-    const token = localStorage.getItem("brucewndtoken");
-    return token && isTokenValid(token) ? children : <Navigate to="/"/>;
+const containsRole = (token, role) => {
+    const decoded = jwtDecode(token);
+    return decoded["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"].includes(role);
 }
 
-export const PublicRoute = ({ children }) => {
+const ProtectedRoute = ({ children, role }) => {
+    const token = localStorage.getItem("brucewndtoken");
+    return token && isTokenValid(token) && containsRole(token, role) ? children : <Navigate to="/"/>;
+}
+
+const PublicRoute = ({ children }) => {
     const token = localStorage.getItem("brucewndtoken");
     return token && isTokenValid(token) ? <Navigate to="/"/> : children;
 }
@@ -39,6 +45,8 @@ function App() {
                     <Route path="/" element={<Home/>}/>
                     <Route path="/login" element={<PublicRoute><Login/></PublicRoute>}/>
                     <Route path="/register" element={<PublicRoute><Register/></PublicRoute>}/>
+                    <Route path="/user" element={<ProtectedRoute role="user"><User/></ProtectedRoute>}/>
+                    <Route path="/dashboard" element={<ProtectedRoute role="admin"><Dashboard/></ProtectedRoute>}/>
                 </Routes>
             </Router>
             <Analytics/>
