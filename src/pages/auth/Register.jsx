@@ -19,7 +19,7 @@ export const Register = () => {
         setLoading(true);
         try {
             const res = await axios.post(`${apiUrl}/users/register`, user);
-            localStorage.setItem("brucewndtoken", res.token);
+            localStorage.setItem("brucewndtoken", res.data.token);
             navigate("/");
         } catch (err) {
             console.error(err);

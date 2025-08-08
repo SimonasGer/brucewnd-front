@@ -7,6 +7,7 @@ export const Header = () => {
     const checkRole = (role) => {
         const token = localStorage.getItem("brucewndtoken");
         if (!token) return false;
+        
         const decoded = jwtDecode(token);
         const roleClaim = decoded["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"];
         const roles = Array.isArray(roleClaim) ? roleClaim : roleClaim ? [roleClaim] : [];

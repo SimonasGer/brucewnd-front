@@ -1,11 +1,10 @@
-.auth-form {
-    max-width: 400px;
-    margin: 3rem auto;
+.dashboard-form {
+    max-width: 500px;
+    margin: 2rem auto;
     padding: 1.5rem;
     background: #1e1e1e;
     border-radius: 12px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    text-align: center;
     fieldset {
         border: none;
         display: flex;
@@ -13,13 +12,15 @@
         gap: 1rem;
     }
     input[type="text"],
-    input[type="password"] {
+    input[type="file"],
+    textarea {
         background: #2b2b2b;
         border: 1px solid #444;
         border-radius: 8px;
         padding: 0.75rem;
         color: #fff;
         font-size: 1rem;
+        resize: vertical;
         outline: none;
         transition: border 0.2s ease, background 0.2s ease;
         &::placeholder {
@@ -29,6 +30,9 @@
             border-color: #4cafef;
             background: #232323;
         }
+    }
+    textarea {
+        min-height: 100px;
     }
     button {
         background: #4cafef;
@@ -43,28 +47,8 @@
         &:hover {
             background: #3b9ed9;
         }
-
         &:active {
             background: #2f89c3;
-        }
-    }
-    .error {
-        color: #ff5a5a;
-        font-size: 0.9rem;
-    }
-    .loading {
-        color: #aaa;
-        font-size: 0.9rem;
-    }
-    a {
-        display: block;
-        margin-top: 0.5rem;
-        color: #4cafef;
-        text-decoration: none;
-        font-size: 0.9rem;
-
-        &:hover {
-            text-decoration: underline;
         }
     }
 }
