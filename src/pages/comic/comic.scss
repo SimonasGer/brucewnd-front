@@ -1,0 +1,220 @@
+/* ========== Admin Panel (Dark) ========== */
+.comic-details {
+    background-color: #121212;
+    color: #e0e0e0;
+    padding: 2rem;
+    border-radius: 12px;
+    max-width: 800px;
+    margin: 2rem auto;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+
+    h1, h2 {
+        color: #ffffff;
+        margin-bottom: 0.5rem;
+    }
+
+    img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+        margin: 1rem 0;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    }
+
+    p {
+        margin: 0.5rem 0;
+        font-size: 1rem;
+        line-height: 1.5;
+
+        &:nth-of-type(1) {
+            font-style: italic;
+        }
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
+
+        li {
+            padding: 0.5rem;
+            margin: 0.3rem 0;
+            background: #1e1e1e;
+            border-radius: 6px;
+            transition: background 0.3s ease;
+
+            &:hover {
+                background: #2a2a2a;
+            }
+        }
+    }
+  /* container already styled; adding admin styles */
+  .admin-toolbar {
+    position: sticky;
+    top: 0.75rem;
+    z-index: 5;
+    display: flex;
+    gap: .75rem;
+    align-items: center;
+    padding: .75rem;
+    margin: 0 0 1rem 0;
+    border-radius: 12px;
+    background: rgba(18, 18, 18, 0.8);
+    backdrop-filter: blur(6px);
+    border: 1px solid #262626;
+
+    .btn {
+      padding: .6rem 1rem;
+      border-radius: 10px;
+      border: 1px solid #2b2b2b;
+      background: #1e1e1e;
+      color: #eaeaea;
+      font-weight: 600;
+      letter-spacing: .2px;
+      cursor: pointer;
+      transition: transform .06s ease, background .2s ease, border-color .2s ease;
+
+      &:hover { background: #252525; }
+      &:active { transform: translateY(1px); }
+      &:disabled {
+        opacity: .5; cursor: not-allowed; transform: none;
+      }
+
+      &.secondary {
+        background: #151515;
+        border-color: #333;
+        &:hover { background: #1b1b1b; }
+      }
+
+      &.warn {
+        background: #2b1212;
+        border-color: #4a1a1a;
+        color: #ffd8d8;
+        &:hover { background: #361515; }
+      }
+    }
+  }
+
+  .admin-form {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    gap: .75rem;
+    align-items: center;
+    padding: 1rem;
+    margin: 0 0 1.25rem 0;
+    border-radius: 12px;
+    background: #141414;
+    border: 1px solid #262626;
+
+    input {
+      width: 100%;
+      padding: .7rem .9rem;
+      border-radius: 10px;
+      border: 1px solid #343434;
+      background: #0f0f0f;
+      color: #e6e6e6;
+      outline: none;
+      transition: border-color .2s ease, box-shadow .2s ease;
+
+      &::placeholder { color: #8a8a8a; }
+      &:focus {
+        border-color: #4b8cff;
+        box-shadow: 0 0 0 3px rgba(75, 140, 255, .18);
+      }
+      &[type="number"] {
+        max-width: 140px;
+      }
+    }
+
+    .btn {
+      justify-self: end;
+      height: 42px;
+    }
+
+    @media (max-width: 640px) {
+      grid-template-columns: 1fr;
+      .btn { justify-self: stretch; }
+    }
+  }
+
+  /* Chapters list admin affordances */
+  .chapters {
+    display: grid;
+    gap: .5rem;
+
+    .chapter-item {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: .75rem;
+      padding: .7rem .9rem;
+      border-radius: 10px;
+      background: #1a1a1a;
+      border: 1px solid #262626;
+
+      .title {
+        font-weight: 600;
+        color: #f0f0f0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .actions {
+        display: flex;
+        gap: .4rem;
+
+        .icon-btn {
+          width: 36px;
+          height: 36px;
+          border-radius: 8px;
+          border: 1px solid #2f2f2f;
+          background: #141414;
+          color: #dcdcdc;
+          cursor: pointer;
+          display: grid;
+          place-items: center;
+          transition: transform .06s ease, background .2s ease, border-color .2s ease;
+
+          &:hover { background: #1d1d1d; }
+          &:active { transform: translateY(1px); }
+          &:disabled { opacity: .45; cursor: not-allowed; transform: none; }
+
+          &.danger {
+            background: #2a1414;
+            border-color: #3b1a1a;
+            color: #ffdede;
+            &:hover { background: #341919; }
+          }
+        }
+      }
+
+      @media (max-width: 560px) {
+        grid-template-columns: 1fr;
+        .actions { justify-content: flex-start; }
+      }
+    }
+  }
+
+  /* Small helpers */
+  .loading, .error {
+    padding: .8rem 1rem;
+    border-radius: 10px;
+    margin: .75rem 0;
+    font-weight: 600;
+  }
+  .loading {
+    background: #141414; border: 1px solid #2a2a2a; color: #bfbfbf;
+  }
+  .error {
+    background: #2a1515; border: 1px solid #4b1f1f; color: #ffcdcd;
+  }
+}
+
+/* Keyboard focus – be nice to future you when tabbing */
+.comic-details :focus-visible {
+  outline: 2px solid #4b8cff;
+  outline-offset: 2px;
+  border-radius: 8px;
+}
+

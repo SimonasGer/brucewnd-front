@@ -1,9 +1,14 @@
+import { useNavigate } from "react-router-dom";
 import "./listItem.scss"
 export const ListItem = (props) => {
+    const navigate = useNavigate();
+    const handleClick = () => {
+        navigate(`/comics/${props.name}`);
+    }
+
     return(
-        <article className="card">
+        <article onClick={handleClick} className="card">
             <div>
-                <h3>{props.name}</h3>
                 <img src={props.image} alt="Thumbnail"/>
             </div>
         </article>

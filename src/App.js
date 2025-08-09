@@ -6,6 +6,7 @@ import { Login } from "./pages/auth/Login";
 import { Register } from "./pages/auth/Register";
 import { User } from "./pages/user/User";
 import { Dashboard } from "./pages/dashboard/Dashboard";
+import { Comic } from "./pages/comic/Comic";
 
 const isTokenValid = (token) => {
     try {
@@ -47,6 +48,8 @@ function App() {
                     <Route path="/register" element={<PublicRoute><Register/></PublicRoute>}/>
                     <Route path="/user" element={<ProtectedRoute role="user"><User/></ProtectedRoute>}/>
                     <Route path="/dashboard" element={<ProtectedRoute role="admin"><Dashboard/></ProtectedRoute>}/>
+                    <Route path="/comics/:name" element={<Comic/>}/>
+                    <Route path="*" element={<Navigate to="/"/>}/>
                 </Routes>
             </Router>
             <Analytics/>
