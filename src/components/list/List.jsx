@@ -10,7 +10,11 @@ export const List = () => {
     useEffect(() => {
         const fetchItems = async () => {
             try {
-                const res = await axios.get(`${apiUrl}/comics`);
+                const res = await axios.get(`${apiUrl}/comics`, {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem("brucewndtoken")}` || null,
+                    },      
+                });
                 setItems(res.data);
             } catch (err) {
                 console.error(err);
